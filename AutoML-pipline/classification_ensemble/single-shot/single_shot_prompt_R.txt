@@ -1,0 +1,39 @@
+Model list:
+model1:
+- Validation set performance: Accuracy=76.73, AUC=61.95
+model2:
+- Validation set performance: Accuracy=77.14, AUC=61.77
+model3:
+- Validation set performance: Accuracy=76.41, AUC=60.42
+model4:
+- Validation set performance: Accuracy=73.32, AUC=61.04
+model5:
+- Validation set performance: Accuracy=76.73, AUC=61.82
+
+Rescue–Confidence matrix:
+[
+ [0.0000, 0.0438, 0.0715, 0.1629, 0.0997],
+ [0.0405, 0.0000, 0.0657, 0.1663, 0.0939],
+ [0.0360, 0.0410, 0.0000, 0.1515, 0.0778],
+ [0.1388, 0.1512, 0.1214, 0.0000, 0.1427],
+ [0.0488, 0.0529, 0.0582, 0.1568, 0.0000]
+]
+
+Model Output (Recommended Optimal Weight Vector):
+Model 1: Weight = 0.2923
+Model 2: Weight = 0.2815
+Model 3: Weight = 0.1012
+Model 4: Weight = 0.0916
+Model 5: Weight = 0.2334
+
+
+Reasoning for Weight Assignment:
+- Model 1 shows strong standalone performance (Acc 76.73%, AUC 61.95) and complementary behavior; assign a core weight.
+- Model 2 shows strong standalone performance (Acc 77.14%, AUC 61.77) and complementary behavior; assign a core weight.
+- Model 3 is moderate by metrics (Acc 76.41%, AUC 60.42); keep a small-to-moderate weight for diversity.
+- Model 4 lags in metrics (Acc 73.32%, AUC 61.04); assign a minimal weight.
+- Model 5 has solid metrics (Acc 76.73%, AUC 61.82); assign a substantial weight.
+
+
+
+Final Model Weight List: [0.2923, 0.2815, 0.1012, 0.0916, 0.2334]

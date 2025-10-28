@@ -1,0 +1,36 @@
+Model List:
+Model 1:
+- Validation Set Performance: Accuracy = 79.14, AUC = 82.14
+Model 2:
+- Validation Set Performance: Accuracy = 77.54, AUC = 82.32
+Model 3:
+- Validation Set Performance: Accuracy = 75.40, AUC = 80.84
+Model 4:
+- Validation Set Performance: Accuracy = 78.60, AUC = 81.28
+Model 5:
+- Validation Set Performance: Accuracy = 75.40, AUC = 79.12
+
+Disagreement Rate matrix
+[
+ [0.0000, 0.0588, 0.1016, 0.0909, 0.1123],  
+ [0.0588, 0.0000, 0.0642, 0.0749, 0.1176],  
+ [0.1016, 0.0642, 0.0000, 0.0963, 0.1497],  
+ [0.0909, 0.0749, 0.0963, 0.0000, 0.1390],  
+ [0.1123, 0.1176, 0.1497, 0.1390, 0.0000]  
+]
+
+Model Output (Recommended Optimal Weight Vector):
+Model 1: Weight = 0.25  
+Model 2: Weight = 0.26  
+Model 3: Weight = 0.17  
+Model 4: Weight = 0.20  
+Model 5: Weight = 0.12  
+
+Reasoning for Weight Assignment:
+- Although Model 2 has a slightly lower Accuracy, it has the optimal AUC, so it is assigned the highest weight.  
+- Model 1 has a high AUC and little prediction disagreement with other models; it is used as a stable core model and given the second-highest weight.  
+- Model 4 has stable overall performance and is retained with a medium weight as a supplementary model.  
+- Although Model 3 has a lower AUC, it has a high disagreement rate (strong complementarity) with Model 2 and Model 4, so it is retained with a certain weight.  
+- Model 5 has the weakest performance but has a certain degree of complementarity (relatively high disagreement with all models), so it is assigned the lowest weight to participate in the ensemble.  
+
+Final Model Weight List:[0.25,0.26,0.17,0.20,0.12]
