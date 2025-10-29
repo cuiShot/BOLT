@@ -1,0 +1,31 @@
+Datasets used in the experiment and their URLs:
+cd1: https://www.kaggle.com/datasets/gustavotg/credit-default
+cc1: https://www.kaggle.com/datasets/gauravduttakiit/jobathon-march-2022
+ld1: https://www.kaggle.com/datasets/ajay1735/hmeq-data
+credit-g: https://www.openml.org/d/31
+cc2: https://www.kaggle.com/datasets/mathchi/churn-for-bank-customers
+cd2: https://www.kaggle.com/datasets/uciml/default-of-credit-card-clients-dataset
+cf1: https://www.kaggle.com/datasets/johancaicedo/creditcardfraud
+adult：https://www.openml.org/d/179
+bank: https://www.openml.org/d/1461
+blood: https://www.openml.org/d/1464
+heart: https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction
+pc1：https://www.openml.org/d/1068
+pc3：https://www.openml.org/d/1050
+tic-tac-toc: https://www.openml.org/d/50
+balance-scale: https://www.openml.org/d/11
+cmc: https://www.openml.org/d/23
+eucalyptus: https://www.openml.org/d/188
+jungle_chess: https://www.openml.org/d/41027
+car: https://www.openml.org/d/40975
+vehicle: https://www.openml.org/d/54
+boston: https://www.kaggle.com/datasets/fedesoriano/the-boston-houseprice-data
+contrete: https://www.kaggle.com/datasets/maajdl/yeh-concret-data
+insurance: https://www.kaggle.com/datasets/mirichoi0218/insurance
+bike: https://archive.ics.uci.edu/dataset/275/bike+sharing+dataset
+crab: https://www.kaggle.com/datasets/sidhus/crab-age-prediction
+forest-fires: https://www.openml.org/d/42363
+wine: https://archive.ics.uci.edu/dataset/186/wine+quality
+wind: https://www.openml.org/d/503
+puma8NH：https://www.openml.org/d/225
+california: https://www.kaggle.com/datasets/camnugent/california-housing-prices
