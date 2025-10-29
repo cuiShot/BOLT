@@ -1,0 +1,19 @@
+Dataset description:
+The Crab Age Prediction dataset on Kaggle (by user “sidhus”) contains morphometric and mass measurements for crabs collected in the Boston area. Each row corresponds to one crab and includes a sex indicator plus eight continuous measurements. The objective is to predict the crab’s age (in months) from these physical attributes. The canonical CSV (CrabAgePrediction.csv) has 3,893 instances and 9 columns (8 input features plus one target). There are no explicit missing values in the published file. Units provided in the source description: lengths in feet (1 foot = 30.48 cm) and weights in ounces (1 pound = 16 ounces). Sex takes three values: Male (M), Female (F), and Indeterminate (I).
+
+Task description:
+Formulate a supervised regression task to estimate age (months) from the eight input features. Recommended preprocessing includes encoding the categorical Sex feature, verifying and, if needed, scaling continuous variables, and checking for outliers or impossible values. Evaluate models with MAE and RMSE alongside R^2; consider age‑bin stratification or grouped cross‑validation to ensure stable error across the age range. If your version of the dataset includes an auxiliary index column (e.g., id), exclude it from modeling.
+
+Attribute information:
+
+1. Sex (categorical): Crab sex; values {M, F, I}.
+2. Length (numeric, feet): Longest shell measurement.
+3. Diameter (numeric, feet): Perpendicular diameter to the length.
+4. Height (numeric, feet): Shell height.
+5. Weight (numeric, ounces): Whole‑crab weight.
+6. Shucked Weight (numeric, ounces): Weight without shell.
+7. Viscera Weight (numeric, ounces): Weight of the internal organs.
+8. Shell Weight (numeric, ounces): Weight of the shell alone.
+
+Target column information:
+Age (real‑valued regression target, months): Estimated age of the crab in months.

@@ -1,0 +1,26 @@
+Dataset description:
+The Wine Quality dataset in the UCI Machine Learning Repository contains physicochemical laboratory tests and expert sensory ratings for Portuguese “Vinho Verde” wines. It is provided as two separate CSV files that share the same schema: red wine (winequality-red.csv) with 1,599 rows and white wine (winequality-white.csv) with 4,898 rows, for a combined total of 6,497 observations. Each row describes one wine sample with eleven real-valued input features and a target quality score. The data have no missing values in the canonical release. Most samples have mid-range quality ratings, leading to class imbalance if the task is cast as classification.
+
+Task description:
+Two common formulations are used:
+
+1. Regression: predict the numeric quality score from the eleven input features.
+2. Classification: map the quality score into categories (for example, low/medium/high or good vs. not-good) and predict the category. If using classification, document the exact binning and be mindful that the true label is ordinal. For regression, evaluate with RMSE and MAE; for classification, report macro-averaged F1, balanced accuracy, and per-class precision/recall. Consider standardization of features, checking for outliers or duplicates, and optionally separate modeling for red and white subsets.
+
+Attribute information:
+All inputs are continuous real-valued measurements obtained via physicochemical analysis.
+
+1. fixed acidity (g/dm^3): concentration of primarily tartaric acid.
+2. volatile acidity (g/dm^3): concentration of acetic acid; higher values can lead to vinegar taste.
+3. citric acid (g/dm^3): concentration of citric acid; can add freshness.
+4. residual sugar (g/dm^3): amount of sugar remaining after fermentation.
+5. chlorides (g/dm^3): concentration of sodium chloride (salt).
+6. free sulfur dioxide (mg/dm^3): free SO2; forms molecular SO2 which prevents microbial growth and oxidation.
+7. total sulfur dioxide (mg/dm^3): total SO2; sum of free and bound forms.
+8. density (g/cm^3): density of the wine; related to alcohol and sugar content.
+9. pH (unitless): acidity/alkalinity level.
+10. sulphates (g/dm^3): potassium sulphate proxy; may contribute to SO2 levels.
+11. alcohol (% vol): alcohol content by volume.
+
+Target column information:
+quality (integer score): expert sensory quality score on a 0–10 scale; in the released datasets, observed scores typically range from 3 to 8. Treat as a numeric regression target or as an ordinal label if binned for classification.

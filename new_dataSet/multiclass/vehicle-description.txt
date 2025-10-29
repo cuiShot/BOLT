@@ -1,0 +1,29 @@
+Dataset description:
+The StatLog Vehicle Silhouettes dataset (OpenML data id 54) contains real-valued shape descriptors extracted from binary images of vehicle silhouettes. Each record represents one object and is summarized by 18 continuous features designed to capture aspects of compactness, circularity, elongation, aspect ratios, rectangularity, variance along principal axes, moments (skewness and kurtosis), and a hollows ratio. The objective is to predict the vehicle type among four categories (opel, saab, bus, van). The dataset has 846 instances and 19 columns in total (18 numeric predictors plus one categorical target). There are no missing values. Class frequencies are moderately imbalanced but of similar order across the four classes.
+
+Task description:
+Formulate a supervised multi-class classification task to predict the vehicle category from the 18 numeric shape descriptors. Because all inputs are continuous and on different scales, consider feature standardization. Evaluate with metrics suitable for multi-class and mild imbalance, such as macro-averaged F1, balanced accuracy, and per-class precision/recall, alongside overall accuracy. Cross-validation with stratification is recommended. Models that capture non-linear boundaries (e.g., tree ensembles, kernel SVMs) often perform well.
+
+Attribute information:
+
+1. COMPACTNESS (numeric): Perimeter^2 / area, normalized to reflect shape compactness.
+2. CIRCULARITY (numeric): Measure of circular resemblance.
+3. DISTANCE\_CIRCULARITY (numeric): Variation of radial distances from centroid.
+4. RADIUS\_RATIO (numeric): Ratio between max and min radius from centroid.
+5. PR.AXIS\_ASPECT\_RATIO (numeric): Aspect ratio along the principal (major) axis.
+6. MAX.LENGTH\_ASPECT\_RATIO (numeric): Aspect ratio using the maximum chord length.
+7. SCATTER\_RATIO (numeric): Ratio of eigenvalues of the covariance of boundary points.
+8. ELONGATEDNESS (numeric): Degree of elongation.
+9. PR.AXIS\_RECTANGULARITY (numeric): Rectangularity measured with the principal axis rectangle.
+10. MAX.LENGTH\_RECTANGULARITY (numeric): Rectangularity using the max-length rectangle.
+11. SCALED\_VARIANCE\_MAJOR (numeric): Variance of boundary distances along the major axis (scaled).
+12. SCALED\_VARIANCE\_MINOR (numeric): Variance along the minor axis (scaled).
+13. SCALED\_RADIUS\_OF\_GYRATION (numeric): Radius of gyration of boundary distances (scaled).
+14. SKEWNESS\_MAJOR (numeric): Third central moment along the major axis.
+15. SKEWNESS\_MINOR (numeric): Third central moment along the minor axis.
+16. KURTOSIS\_MAJOR (numeric): Fourth central moment along the major axis.
+17. KURTOSIS\_MINOR (numeric): Fourth central moment along the minor axis.
+18. HOLLOWS\_RATIO (numeric): Ratio reflecting the amount of interior hollowness.
+
+Target column information:
+class (multi-class): One of {opel, saab, bus, van}.

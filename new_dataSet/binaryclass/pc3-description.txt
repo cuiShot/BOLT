@@ -1,0 +1,49 @@
+Dataset description:
+The pc3 dataset (OpenML data id 1050) is one of the NASA Metrics Data Program (MDP) software defect datasets. Each record represents a software module from flight software for an Earth‑orbiting satellite and is described by static code metrics drawn from McCabe complexity, Halstead measures, lines‑of‑code counts, and related indicators. The OpenML version contains 1,563 instances and 38 columns total (37 numeric predictors plus one binary target), with no missing values. The positive class (defective modules) is the minority, so the dataset is imbalanced.
+
+Task description:
+Formulate a supervised binary classification task to predict whether a module is defective from the 37 static code metrics. Because the class distribution is imbalanced, use stratified, repetition‑robust evaluation and report metrics beyond accuracy (macro‑F1, ROC‑AUC/PR‑AUC, balanced accuracy) along with per‑class precision/recall. Consider simple preprocessing: remove obvious constant/duplicate features if present, standardize numeric inputs for distance‑based learners, and optionally log‑transform skewed metrics. If doing cross‑project evaluation, document training/test projects explicitly. For interpretability, analyze feature importance and partial effects for key metrics (e.g., complexity vs. size).
+
+Attribute information:
+Method‑level static code metrics (all numeric). Names follow common MDP/PROMISE conventions; brief descriptions provided for readability:
+
+1. LOC\_BLANK: Blank line count.
+2. BRANCH\_COUNT: Number of decision branches.
+3. CALL\_PAIRS: Number of distinct call pairs.
+4. LOC\_CODE\_AND\_COMMENT: Lines of code including comment lines.
+5. LOC\_COMMENTS: Comment line count.
+6. CONDITION\_COUNT: Number of conditions (e.g., boolean tests).
+7. CYCLOMATIC\_COMPLEXITY: McCabe cyclomatic complexity.
+8. CYCLOMATIC\_DENSITY: Cyclomatic complexity normalized by size.
+9. DECISION\_COUNT: Number of decision points.
+10. DECISION\_DENSITY: Decision count normalized by size.
+11. DESIGN\_COMPLEXITY: McCabe design complexity.
+12. DESIGN\_DENSITY: Design complexity normalized by size.
+13. EDGE\_COUNT: Control‑flow edge count.
+14. ESSENTIAL\_COMPLEXITY: McCabe essential complexity.
+15. ESSENTIAL\_DENSITY: Essential complexity normalized by size.
+16. LOC\_EXECUTABLE: Executable (non‑comment, non‑blank) lines of code.
+17. PARAMETER\_COUNT: Number of parameters.
+18. HALSTEAD\_CONTENT: Halstead content measure.
+19. HALSTEAD\_DIFFICULTY: Halstead difficulty.
+20. HALSTEAD\_EFFORT: Halstead effort.
+21. HALSTEAD\_ERROR\_EST: Halstead error estimate.
+22. HALSTEAD\_LENGTH: Halstead length.
+23. HALSTEAD\_LEVEL: Halstead level.
+24. HALSTEAD\_PROG\_TIME: Halstead programming time.
+25. HALSTEAD\_VOLUME: Halstead volume.
+26. MAINTENANCE\_SEVERITY: Maintenance severity index.
+27. MODIFIED\_CONDITION\_COUNT: Modified condition count.
+28. MULTIPLE\_CONDITION\_COUNT: Multiple condition count.
+29. NODE\_COUNT: Control‑flow node count.
+30. NORMALIZED\_CYLOMATIC\_COMPLEXITY: Cyclomatic complexity normalized (alternate normalization; spelling as in source).
+31. NUM\_OPERANDS: Total operands.
+32. NUM\_OPERATORS: Total operators.
+33. NUM\_UNIQUE\_OPERANDS: Unique operands.
+34. NUM\_UNIQUE\_OPERATORS: Unique operators.
+35. NUMBER\_OF\_LINES: Total line count.
+36. PERCENT\_COMMENTS: Share of comment lines.
+37. LOC\_TOTAL: Total lines of code (aggregate size metric).
+
+Target column information:
+defects (binary): {false, true}. Value true indicates the module has one or more recorded defects; false indicates no recorded defects.

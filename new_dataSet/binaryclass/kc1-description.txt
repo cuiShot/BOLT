@@ -1,0 +1,37 @@
+Dataset description:
+The KC1 dataset (OpenML data id 1067) is part of NASA’s Metrics Data Program (MDP) for software defect prediction. It contains module‑level static code metrics collected from a C++ storage‑management system used for receiving and processing ground data. Each row represents one software module with McCabe complexity measures, Halstead metrics, lines‑of‑code counts, and a branch count, plus a binary defect label. The dataset has 2,109 instances and 22 columns in total (21 numeric predictors plus one binary target). The canonical OpenML release reports no missing values. Defective modules form the minority class.
+
+Task description:
+Formulate a supervised binary classification task to predict whether a module is defective using the 21 static code metrics. Because the dataset is imbalanced, use stratified validation and report metrics beyond accuracy (macro‑F1, PR‑AUC, ROC‑AUC, balanced accuracy). Consider standardizing features for distance‑based models, optionally log‑transforming skewed metrics (e.g., counts), and analyzing feature importance for interpretability.
+
+Attribute information:
+All predictors are numeric, computed per module. The feature set comprises:
+Lines of code (5):
+
+1. LOC\_BLANK: Blank line count.
+2. LOC\_CODE\_AND\_COMMENT: Lines of code including comments.
+3. LOC\_COMMENTS: Comment line count.
+4. LOC\_EXECUTABLE: Executable (non‑comment, non‑blank) lines of code.
+5. LOC\_TOTAL: Total lines of code.
+   McCabe complexity (3):
+6. CYCLOMATIC\_COMPLEXITY: McCabe V(g).
+7. ESSENTIAL\_COMPLEXITY: McCabe essential complexity.
+8. DESIGN\_COMPLEXITY: McCabe design complexity.
+   Halstead metrics (12):
+9. NUM\_OPERANDS: Total operands.
+10. NUM\_OPERATORS: Total operators.
+11. NUM\_UNIQUE\_OPERANDS: Unique operands.
+12. NUM\_UNIQUE\_OPERATORS: Unique operators.
+13. HALSTEAD\_LENGTH: Program length.
+14. HALSTEAD\_CONTENT: Content measure.
+15. HALSTEAD\_LEVEL: Level.
+16. HALSTEAD\_DIFFICULTY: Difficulty.
+17. HALSTEAD\_VOLUME: Volume.
+18. HALSTEAD\_EFFORT: Effort.
+19. HALSTEAD\_ERROR\_EST: Estimated delivered defects (bugs).
+20. HALSTEAD\_PROG\_TIME: Programming time estimate.
+    Control‑flow count (1):
+21. BRANCH\_COUNT: Decision branch count.
+
+Target column information:
+22\. defects (binary): {false, true}. true indicates the module has one or more recorded defects; false indicates no recorded defects.

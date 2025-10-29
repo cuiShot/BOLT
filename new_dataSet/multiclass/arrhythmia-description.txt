@@ -1,0 +1,18 @@
+Dataset description:
+The Arrhythmia dataset (originally from the UCI Machine Learning Repository and mirrored on OpenML as data id 5) contains patient-level ECG-derived features and basic demographics for arrhythmia diagnosis research. Each row corresponds to one subject; columns include hundreds of ECG measurements (intervals, amplitudes, morphology indicators across the standard 12 leads) plus a class label. The dataset has 452 instances and 280 columns in the OpenML version (279 predictors plus 1 target). Many attributes contain missing values (commonly encoded as "?"). Feature types are primarily numeric, with some nominal indicators. The class distribution is highly imbalanced: the "normal" class dominates, and many arrhythmia subtypes have very few examples.
+
+Task description:
+Formulate a supervised multi-class classification problem to predict the arrhythmia category for each subject based on the ECG- and patient-derived attributes. Because of severe class imbalance and the high dimensionality relative to the sample size, consider techniques such as careful cross-validation with stratification, feature selection or regularization, class-weighting or resampling, and calibration/threshold tuning. Alternative tasks sometimes binarize the target into {normal vs. arrhythmia}; if you follow that variant, adjust evaluation accordingly (e.g., PR-AUC, F1, balanced accuracy) and document the exact label mapping used.
+
+Attribute information:
+All predictors are per-subject attributes. There are hundreds of ECG-derived measurements and a few basic demographics; examples include:
+
+* Demographics: age, sex, height, weight.
+* Time intervals: RR, PR, QRS, QT intervals (and variants by lead).
+* Wave amplitudes and durations: P, Q, R, S, T waves; ST segments; J points across 12 leads.
+* Morphology/indicator flags: presence/absence or categorical flags for specific waveform patterns.
+* Summary counts/derived measures: averages, extrema, and lead-specific statistics.
+  Most attributes are numeric; a subset are nominal indicators. Missing values are present and should be handled explicitly (imputation or model types robust to missingness).
+
+Target column information:
+class (multi-class): integer-coded categories 1–16, where 1 = normal, 2–15 = specific arrhythmia types, and 16 = unclassified or other. If using a binary setup, map class 1 to "normal" and classes 2–16 to "arrhythmia" and report the mapping clearly.

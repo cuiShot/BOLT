@@ -1,0 +1,23 @@
+Dataset description:
+The Forest Fires dataset (OpenML data id 42363; originally from the UCI Machine Learning Repository) contains observations of forest fire occurrences in the Montesinho natural park in northeast Portugal. Each row corresponds to a day and location cell and includes meteorological variables and Fire Weather Index (FWI) components. The goal is to predict the burned area of the fire in hectares. The dataset has 517 instances and 13 columns (12 input features plus one regression target). There are no missing values in the original release. The target distribution is highly skewed toward zero; many days record zero burned area, and it is common to apply a log transform ln(area + 1) when modeling.
+
+Task description:
+Define a supervised regression task to predict burned area (hectares) from meteorological conditions, FWI indices, and spatial/temporal indicators. Because the target is zero-inflated and right‑skewed, consider transformations (e.g., ln(area + 1)), robust metrics beyond RMSE (MAE, median AE), or models suited to skewed/zero‑inflated outcomes. Use proper cross‑validation and, where relevant, evaluate both error magnitude and ability to distinguish zero vs. non‑zero outcomes.
+
+Attribute information:
+
+1. X (numeric/integer): x‑axis spatial coordinate within the Montesinho park map; values 1–9.
+2. Y (numeric/integer): y‑axis spatial coordinate within the Montesinho park map; values 2–9.
+3. month (categorical): month of year; {jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec}.
+4. day (categorical): day of week; {mon, tue, wed, thu, fri, sat, sun}.
+5. FFMC (numeric, continuous): Fine Fuel Moisture Code from the FWI system; typical range about 18.7–96.2.
+6. DMC (numeric, continuous): Duff Moisture Code from the FWI system; typical range about 1.1–291.3.
+7. DC (numeric, continuous): Drought Code from the FWI system; typical range about 7.9–860.6.
+8. ISI (numeric, continuous): Initial Spread Index from the FWI system; typical range about 0.0–56.1.
+9. temp (numeric, continuous): temperature in degrees Celsius; typical range about 2.2–33.3.
+10. RH (numeric/integer): relative humidity in percent; typical range about 15–100.
+11. wind (numeric, continuous): wind speed in km/h; typical range about 0.4–9.4.
+12. rain (numeric, continuous): rainfall in mm/m^2; typical range about 0.0–6.4.
+
+Target column information:
+area (real-valued regression target): burned area of the forest in hectares; range 0.00–1090.84. The distribution is highly skewed with many zeros; modeling often uses ln(area + 1).

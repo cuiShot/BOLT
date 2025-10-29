@@ -1,0 +1,31 @@
+Dataset description:
+The “wind” dataset on OpenML (data id 503) contains daily average wind speeds recorded from 1961 to 1978 at 12 synoptic meteorological stations in the Republic of Ireland. Each row corresponds to one calendar day; the columns include date components (year, month, day) and the 12 station measurements. Units are knots (1 knot ≈ 0.5144 m/s). The OpenML version reports 6,574 instances and 15 columns (3 date fields + 12 station variables). The dataset is a multivariate time series and is commonly used for spatio‑temporal regression or cross‑station prediction.
+
+Task description:
+Formulate supervised regression tasks to predict wind speed at one station from other stations and/or time features. Typical setups include:
+
+1. Cross‑sectional regression for a target station (e.g., predict MAL from the other 11 stations plus date fields).
+2. Time‑aware forecasting for a chosen station using lagged values and seasonality features (ensure blocked/rolling‑origin validation rather than random shuffles).
+3. Spatio‑temporal modeling leveraging all stations jointly.
+   Because the series exhibits seasonality and strong inter‑station correlations, prefer time‑aware splits and evaluate with RMSE and MAE; optionally assess calibration across months/seasons.
+
+Attribute information:
+
+1. year (integer): Year coded as year − 1900 (e.g., 61 = 1961).
+2. month (integer): Month number 1–12.
+3. day (integer): Day of month 1–31.
+4. RPT (numeric): Daily average wind speed at station RPT (knots).
+5. VAL (numeric): Daily average wind speed at station VAL (knots).
+6. ROS (numeric): Daily average wind speed at station ROS (knots).
+7. KIL (numeric): Daily average wind speed at station KIL (knots).
+8. SHA (numeric): Daily average wind speed at station SHA (knots).
+9. BIR (numeric): Daily average wind speed at station BIR (knots).
+10. DUB (numeric): Daily average wind speed at station DUB (knots).
+11. CLA (numeric): Daily average wind speed at station CLA (knots).
+12. MUL (numeric): Daily average wind speed at station MUL (knots).
+13. CLO (numeric): Daily average wind speed at station CLO (knots).
+14. BEL (numeric): Daily average wind speed at station BEL (knots).
+15. MAL (numeric): Daily average wind speed at station MAL (knots).
+
+Target column information:
+No default target column is fixed in the dataset itself. For a supervised regression task, choose one station variable (commonly MAL) as the continuous target (knots) and use the remaining station measurements and/or date fields as predictors. If performing time‑series forecasting, construct lagged versions of the chosen target and respect temporal order in evaluation.

@@ -1,0 +1,24 @@
+{
+    "loc": "Lines of code in the program",
+    "v(g)": "Cyclomatic complexity, measuring the number of independent paths in the code",
+    "ev(g)": "Essential complexity, representing the degree of structuredness in the code",
+    "iv(G)": "Design complexity, capturing interactions among modules",
+    "N": "Total number of operators and operands in the code",
+    "V": "Halstead volume, representing the size of the implementation",
+    "L": "Halstead level, indicating the level of abstraction in the code",
+    "D": "Halstead difficulty, showing the complexity of the code",
+    "I": "Halstead intelligence, a measure of the maintainability of the code",
+    "E": "Halstead effort, representing the effort required to write or understand the code",
+    "B": "Halstead bugs, an estimation of the number of bugs present in the code",
+    "T": "Halstead time, estimating the time needed to write or understand the code",
+    "lOCode": "Number of lines of code without comments",
+    "lOComment": "Number of lines containing comments",
+    "locCodeAndComment": "Total number of lines containing both code and comments",
+    "lOBlank": "Number of blank lines in the program",
+    "uniq_Op": "Number of unique operators in the code",
+    "uniq_Opnd": "Number of unique operands in the code",
+    "total_Op": "Total number of operators in the code",
+    "total_Opnd": "Total number of operands in the code",
+    "branchCount": "Number of branch statements in the code, indicating decision points"
+  }
+  

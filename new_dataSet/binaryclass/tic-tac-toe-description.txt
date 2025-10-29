@@ -1,0 +1,20 @@
+Dataset description:
+The "tic-tac-toe" dataset encodes endgame board configurations of Tic-Tac-Toe, assuming that the X player moved first. Each record contains the state of the 3x3 board using nine categorical features indicating whether each square holds an X, an O, or is blank. The predictive goal is to determine whether the configuration represents a win for X. The dataset contains 958 instances and 10 columns (9 categorical features plus one binary target). There are no missing values.
+
+Task description:
+Formulate a supervised binary classification task that predicts whether X has a three-in-a-row (win) for a given final board configuration. Given the simplicity and discreteness of the features, many standard classifiers achieve high accuracy; nonetheless, consider stratified evaluation and metrics beyond accuracy when comparing models, and inspect class balance before training.
+
+Attribute information:
+
+1. top-left-square (categorical): {x, o, b}
+2. top-middle-square (categorical): {x, o, b}
+3. top-right-square (categorical): {x, o, b}
+4. middle-left-square (categorical): {x, o, b}
+5. middle-middle-square (categorical): {x, o, b}
+6. middle-right-square (categorical): {x, o, b}
+7. bottom-left-square (categorical): {x, o, b}
+8. bottom-middle-square (categorical): {x, o, b}
+9. bottom-right-square (categorical): {x, o, b}
+
+Target column information:
+Class (binary): {positive, negative}. "positive" indicates that X has one of the eight possible three-in-a-row winning lines; "negative" indicates otherwise.

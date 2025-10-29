@@ -1,0 +1,22 @@
+Dataset description:
+The Heart Failure Prediction dataset on Kaggle (by fedesoriano) compiles clinical and demographic attributes for 918 individuals to support supervised modeling of cardiovascular disease. Each row corresponds to a patient and includes a mix of numeric and categorical features commonly used in cardiology risk assessment. The objective is to predict the presence of heart disease (binary). The dataset has 12 columns in total (11 input features plus one target). There are no explicit missing values in the published CSV; however, certain zero values (for example in cholesterol or resting blood pressure) may represent unknowns or data-entry placeholders and should be assessed during preprocessing. Class balance is slightly skewed toward the positive class, so evaluation beyond raw accuracy is recommended.
+
+Task description:
+Formulate a binary classification task to predict whether a patient has heart disease using the provided clinical and demographic attributes. Apply appropriate preprocessing, including encoding of categorical features, scaling numeric variables if required, and addressing anomalous zeros. Because the target is slightly imbalanced and recall may be clinically important, consider threshold tuning and metrics such as ROC-AUC, PR-AUC, F1-score, precision, recall, and calibration curves. Document any feature engineering (for example, ordinal encoding for ordered categories) and the handling of potential outliers.
+
+Attribute information:
+
+1. Age (numeric): Age in years.
+2. Sex (categorical): {M, F}.
+3. ChestPainType (categorical): {ATA, NAP, ASY, TA}; types of chest pain.
+4. RestingBP (numeric): Resting blood pressure in mm Hg.
+5. Cholesterol (numeric): Serum cholesterol in mg/dl.
+6. FastingBS (binary): Fasting blood sugar indicator; 1 if FastingBS >= 120 mg/dl, else 0.
+7. RestingECG (categorical): Resting electrocardiogram results; {Normal, ST, LVH}.
+8. MaxHR (numeric): Maximum heart rate achieved (beats per minute).
+9. ExerciseAngina (binary/categorical): Exercise-induced angina; {Y, N}.
+10. Oldpeak (numeric): ST depression induced by exercise relative to rest (floating-point value).
+11. ST\_Slope (categorical, ordered): Slope of the peak exercise ST segment; {Up, Flat, Down}.
+
+Target column information:
+HeartDisease (binary): Presence of heart disease; 1 = disease, 0 = no disease.

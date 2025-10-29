@@ -1,0 +1,33 @@
+Dataset description:
+The Covertype (Covtype) dataset from the UCI Machine Learning Repository contains cartographic variables describing 30×30 meter forest cells in northern Colorado’s Roosevelt National Forest. The objective is to classify each cell into one of seven forest cover types. The dataset has 581,012 instances and 55 columns in total (54 input features plus one multi-class target). There are no missing values. Inputs comprise 10 quantitative terrain and proximity measures and 44 binary indicators (four wilderness areas and forty soil types). The data are provided in raw, unscaled form.
+
+Task description:
+Formulate a supervised multi-class classification task to predict forest cover type (seven classes) from the 54 input attributes. Because class frequencies are imbalanced (some cover types are much more common), use stratified validation and emphasize metrics robust to imbalance (macro-averaged F1, balanced accuracy, per-class precision/recall) in addition to overall accuracy. Consider feature scaling for distance/angle variables when using distance-based methods. For interpretability or deployment, evaluate feature importance and spatial consistency of predictions.
+
+Attribute information:
+Quantitative features (all numeric, as stored in the original files):
+
+1. Elevation (meters): Elevation in meters.
+2. Aspect (degrees azimuth): Aspect in degrees.
+3. Slope (degrees): Slope in degrees.
+4. Horizontal\_Distance\_To\_Hydrology (meters): Horizontal distance to the nearest surface water.
+5. Vertical\_Distance\_To\_Hydrology (meters): Vertical distance to the nearest surface water.
+6. Horizontal\_Distance\_To\_Roadways (meters): Horizontal distance to the nearest roadway.
+7. Hillshade\_9am (index 0–255): Hillshade at 9 a.m. (summer solstice).
+8. Hillshade\_Noon (index 0–255): Hillshade at solar noon (summer solstice).
+9. Hillshade\_3pm (index 0–255): Hillshade at 3 p.m. (summer solstice).
+10. Horizontal\_Distance\_To\_Fire\_Points (meters): Horizontal distance to the nearest wildfire ignition points.
+
+Binary indicator features:
+11–14. Wilderness\_Area1, Wilderness\_Area2, Wilderness\_Area3, Wilderness\_Area4 (0/1): Wilderness area designation (four one-hot columns).
+15–54. Soil\_Type1 … Soil\_Type40 (0/1): Soil type designation (forty one-hot columns).
+
+Target column information:
+Cover\_Type (multi-class): Integer codes 1–7 denoting the forest cover type
+1 = Spruce/Fir
+2 = Lodgepole Pine
+3 = Ponderosa Pine
+4 = Cottonwood/Willow
+5 = Aspen
+6 = Douglas-fir
+7 = Krummholz

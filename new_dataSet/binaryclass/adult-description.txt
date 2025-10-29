@@ -1,0 +1,25 @@
+Dataset description:
+This dataset, known as "Adult" or "Census Income", was extracted from the 1994 U.S. Census database by Ronny Kohavi and Barry Becker. Each record describes an adult individual's demographic and employment attributes. The predictive goal is to determine whether the person's annual income exceeds \$50K. The dataset contains 48,842 instances and 15 columns (14 input features plus one binary target). Missing values are encoded as "?"; 3,620 rows contain at least one missing value, leaving 45,222 complete rows. The positive class (>50K) accounts for roughly 24% of the data, so the dataset is class-imbalanced.
+
+Task description:
+Build a binary classification model that predicts whether an individual's income is >50K using the 14 input features. Address class imbalance through stratified sampling, class weighting, resampling, or calibrated thresholding. When evaluating models, favor metrics robust to imbalance (ROC-AUC, PR-AUC, F1) alongside accuracy. Because sensitive attributes (e.g., sex, race) are present, consider fairness-aware evaluation where appropriate.
+
+Attribute information:
+
+1. age (numeric): Age in years.
+2. workclass (categorical): Type of employer (e.g., Private, Self-emp, Government). May include "?" for unknown.
+3. fnlwgt (numeric): Final sampling weight from the Census.
+4. education (categorical): Highest education level.
+5. education-num (integer): Years of education corresponding to "education".
+6. marital-status (categorical): Marital status grouping.
+7. occupation (categorical): Occupation category; may include "?" for unknown.
+8. relationship (categorical): Relationship status within a household (e.g., Husband, Wife, Own-child).
+9. race (categorical): Race category.
+10. sex (categorical): Biological sex.
+11. capital-gain (numeric): Capital gains.
+12. capital-loss (numeric): Capital losses.
+13. hours-per-week (numeric): Average hours worked per week.
+14. native-country (categorical): Country of origin; may include "?" for unknown.
+
+Target column information:
+income (binary class attribute): <=50K or >50K.

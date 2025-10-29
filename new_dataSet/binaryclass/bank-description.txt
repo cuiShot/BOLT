@@ -1,0 +1,27 @@
+Dataset description:
+This dataset, commonly called "Bank Marketing," contains data from direct marketing campaigns (telephone calls) of a Portuguese banking institution conducted between 2008 and 2010. Each record describes a client and the context of outreach. The prediction task is to determine whether the client will subscribe to a term deposit. The OpenML version with id 1461 corresponds to the classic "bank-full" variant and contains 45,211 instances and 17 columns (16 input features plus one binary target). Several categorical attributes may take the value "unknown" to indicate missing information. The positive class (subscription = yes) is a minority at roughly 12–13%, so the dataset is imbalanced.
+
+Task description:
+Build a binary classification model that predicts whether a client will subscribe to a term deposit using demographic, financial, and campaign-related features. Because the positive class is relatively rare, consider strategies for class imbalance such as stratified sampling, class weighting, resampling, and threshold tuning. When evaluating models, rely on metrics robust to imbalance (ROC-AUC, PR-AUC, F1-score) alongside accuracy. Note: the feature "duration" is highly predictive but usually only known after the call; exclude or handle it carefully if you aim for a deployable, pre-call model.
+
+Attribute information:
+
+1. age (numeric): Age of the client in years.
+2. job (categorical): Type of job (e.g., admin., blue-collar, technician, management, etc.); may be "unknown".
+3. marital (categorical): Marital status (married, single, divorced); may be "unknown".
+4. education (categorical): Education level (primary, secondary, tertiary, or unknown).
+5. default (categorical): Has credit in default? (yes, no, unknown).
+6. balance (numeric): Average yearly balance in euros.
+7. housing (categorical): Has a housing loan? (yes, no, unknown).
+8. loan (categorical): Has a personal loan? (yes, no, unknown).
+9. contact (categorical): Contact communication type (cellular, telephone).
+10. day (numeric): Last contact day of the month.
+11. month (categorical): Last contact month of year (jan, feb, ... , dec).
+12. duration (numeric): Last contact duration in seconds. Strong leakage risk for real-time prediction.
+13. campaign (numeric): Number of contacts performed during this campaign for this client.
+14. pdays (numeric): Number of days since the client was last contacted from a previous campaign (−1 means not previously contacted).
+15. previous (numeric): Number of contacts performed before this campaign for this client.
+16. poutcome (categorical): Outcome of the previous marketing campaign (failure, nonexistent, success).
+
+Target column information:
+y (binary class attribute): Whether the client subscribed a term deposit. Values: yes, no.

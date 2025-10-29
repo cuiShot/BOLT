@@ -1,0 +1,37 @@
+Dataset description:
+
+PC1 is one of the NASA Metrics Data Program (MDP) software defect datasets. It contains module-level static code metrics extracted from flight software for an Earth‑orbiting satellite. Features are primarily Halstead and McCabe metrics, plus counts derived from source code lines and control‑flow structure. The dataset has 1,109 software modules (instances) and 22 numeric attributes including the target. The class distribution is highly imbalanced: the vast majority of modules are labeled non‑defective, with only a small minority labeled defective.
+
+Task description:
+
+Supervised binary classification: predict whether a software module is defect‑prone (defective) or not based on static code metrics. Because of class imbalance, it is common to use evaluation measures that reflect minority‑class performance (e.g., F1, AUCPR, balanced accuracy, Matthews correlation) and to consider resampling or cost‑sensitive methods.
+
+Attribute information:
+
+All predictors are numeric, computed per module.
+
+1. loc: McCabe’s line count of code
+2. v(g): McCabe cyclomatic complexity
+3. ev(g): McCabe essential complexity
+4. iv(g): McCabe design complexity
+5. n: Halstead total operators + operands
+6. v: Halstead volume
+7. l: Halstead program length
+8. d: Halstead difficulty
+9. i: Halstead intelligence
+10. e: Halstead effort
+11. b: Halstead delivered bugs (expected defects)
+12. t: Halstead time estimator
+13. lOCode: Halstead’s line count (code)
+14. lOComment: Halstead’s count of comment lines
+15. lOBlank: Halstead’s count of blank lines
+16. lOCodeAndComment: lines of code and comment combined
+17. uniq\_Op: number of unique operators
+18. uniq\_Opnd: number of unique operands
+19. total\_Op: total operators
+20. total\_Opnd: total operands
+21. branchCount: number of branches in the flow graph
+
+Target column information:
+
+22. defects (class attribute): binary label indicating whether the module has one or more reported defects; values are {false, true}.

@@ -1,0 +1,33 @@
+Dataset description:
+The Bike Sharing dataset (UCI repository link provided) aggregates rental records from Capital Bikeshare in Washington, D.C., across the years 2011–2012. It is released in two pre-aggregated tables: a daily-level file (day.csv) with 731 rows and 16 columns, and an hourly-level file (hour.csv) with 17,379 rows and 17 columns. Each row summarizes weather, calendar, and usage context for a given day or hour. Numeric meteorological variables are scaled to the \[0, 1] range in the provided CSVs. The principal modeling objective is to predict the total number of bike rentals (cnt). There are no missing values in the canonical release. The total rental count equals the sum of two subpopulations: casual (unregistered users) and registered (subscribers).
+
+Task description:
+Define supervised regression tasks to predict demand for bike rentals. Common setups include:
+
+1. Hourly demand forecasting: predict cnt for each hour using contemporaneous weather, calendar, and lag features.
+2. Daily demand forecasting: predict daily cnt from daily aggregates.
+   Because demand exhibits strong seasonality, weekly patterns, and weather sensitivity, use time-aware validation (blocked or rolling origin) rather than random shuffle. Consider transformations (e.g., log1p on cnt) or count models (Poisson/negative binomial) to handle heteroskedasticity. When modeling registered and casual users separately, ensure that the sum of predictions aligns with total demand.
+
+Attribute information:
+Columns common to both daily and hourly files unless noted; types are as stored in the CSVs.
+
+1. instant (integer): Record index.
+2. dteday (date/string): Calendar date (YYYY-MM-DD).
+3. season (categorical/integer): 1 = spring, 2 = summer, 3 = fall, 4 = winter.
+4. yr (binary/integer): 0 = 2011, 1 = 2012.
+5. mnth (integer): Month number, 1–12.
+6. hr (integer): Hour of day, 0–23 (hour.csv only).
+7. holiday (binary): 1 if the day is a U.S. public holiday, else 0.
+8. weekday (integer): Day of week, 0–6 (0 = Sunday if using Python’s default; check repository notes when reproducing).
+9. workingday (binary): 1 if day is neither weekend nor holiday, else 0.
+10. weathersit (categorical/integer): Weather situation code — 1 = clear/few clouds/partly cloudy, 2 = mist + cloudy/broken clouds, 3 = light snow or light rain/thunderstorm/scattered clouds, 4 = heavy rain/ice pellets/thunderstorm/mist or snow + fog.
+11. temp (numeric, scaled): Normalized air temperature in Celsius scaled to \[0, 1].
+12. atemp (numeric, scaled): Normalized “feels-like” temperature in Celsius scaled to \[0, 1].
+13. hum (numeric, scaled): Normalized relative humidity scaled to \[0, 1].
+14. windspeed (numeric, scaled): Normalized wind speed scaled to \[0, 1].
+15. casual (integer): Count of casual (non-registered) user rentals for the period.
+16. registered (integer): Count of registered user rentals for the period.
+17. cnt (integer): Total rentals for the period; cnt = casual + registered.
+
+Target column information:
+For the canonical regression task, use cnt as the real-valued target (rental count for the given day or hour). Alternative targets sometimes modeled include registered and casual; if you choose those, report both per-target performance and consistency with cnt.

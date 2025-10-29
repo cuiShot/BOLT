@@ -1,0 +1,20 @@
+Dataset description:
+The puma8NH dataset (OpenML data id 225) is part of the Pumadyn family generated from a realistic simulation of the Unimation PUMA 560 robot arm. In this variant, each record describes a simulated robot state using three joint angles, three joint angular velocities, and two applied torques. The learning objective is to predict the angular acceleration of joint 3. This is the non-linear, high-noise version ("NH"), commonly used to benchmark regression under noise and non-linearity. The dataset contains 8,192 instances and 9 columns in total (8 continuous input features plus 1 continuous target). The canonical release contains no missing values.
+
+Task description:
+Formulate a supervised regression task to predict joint-3 angular acceleration from the eight real-valued inputs. Because the target is noisy and relationships are non-linear, consider non-linear models (e.g., kernel methods, gradient-boosted trees, random forests, Gaussian processes) and report robust metrics such as MAE alongside RMSE. Standardize features for distance-based learners, use repeated K-fold or DELVE-style splits for stable estimates, and document any additional feature engineering (e.g., interaction terms or lags) to avoid leakage.
+
+Attribute information:
+All predictors are continuous, per simulated state.
+
+1. theta1 (numeric): Joint 1 angle.
+2. theta2 (numeric): Joint 2 angle.
+3. theta3 (numeric): Joint 3 angle.
+4. thetad1 (numeric): Joint 1 angular velocity.
+5. thetad2 (numeric): Joint 2 angular velocity.
+6. thetad3 (numeric): Joint 3 angular velocity.
+7. tau1 (numeric): Applied torque at joint 1.
+8. tau2 (numeric): Applied torque at joint 2.
+
+Target column information:
+9\. thetadd3 (real-valued regression target): Angular acceleration of joint 3 (rad/s^2).

@@ -1,0 +1,15 @@
+Dataset description:
+This dataset originates from a blood donation service center in Hsinchu City, Taiwan. Each record represents a donor summarized by four RFM(T) behavioral features: Recency (months since the last donation), Frequency (total number of donations), Monetary (total blood donated in c.c.), and Time (months since the first donation). The objective is to predict whether the donor made a donation in March 2007. The dataset contains 748 instances and 5 columns (four numerical features plus one binary target). There are no missing values. The positive-to-negative class ratio is approximately 24% to 76%, indicating class imbalance that should be considered during modeling.
+
+Task description:
+Build a binary classification model that predicts if a donor will donate in March 2007 using the R, F, M, and T features. Because the dataset is imbalanced, consider stratified sampling, class weights, resampling techniques, or threshold tuning. When evaluating models, rely on metrics that are robust to imbalance such as ROC-AUC, PR-AUC, F1-score, and calibrated predicted probabilities in addition to accuracy.
+
+Attribute information:
+
+1. Recency (numeric): Months since the last donation.
+2. Frequency (numeric): Total number of donations.
+3. Monetary (numeric): Total blood donated, measured in cubic centimeters (c.c.).
+4. Time (numeric): Months since the first donation.
+
+Target column information:
+Donated\_Blood (binary): Indicates whether the donor donated blood in March 2007. 1 = Yes, 0 = No.

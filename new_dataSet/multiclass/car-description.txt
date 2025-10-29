@@ -1,0 +1,17 @@
+Dataset description:
+The Car Evaluation dataset (OpenML data id 40975) is derived from a hierarchical decision model for car acceptability created by M. Bohanec. Each record represents a car described by six categorical attributes: buying price, maintenance cost, number of doors, seating capacity, luggage boot size, and safety. The goal is to predict overall car acceptability. The dataset contains 1,728 instances and 7 columns (6 input features plus one target). Values are nominal but many have an inherent order (e.g., v-high > high > med > low; small < med < big; low < med < high). The dataset has no missing values. Class distribution is highly skewed: the majority class is “unacc,” while “acc,” “good,” and “vgood” make up the remainder.
+
+Task description:
+Formulate a supervised multi-class classification task to predict car acceptability from the six input attributes. Because the classes are imbalanced and several features are ordinal, consider stratified evaluation, metrics beyond accuracy (macro-averaged F1, balanced accuracy, AUCPR per class), and encodings that respect ordinality (e.g., ordinal encoding for ordered categories). For benchmarking or deployment, report confusion matrices and per-class performance, and consider an alternative binary variant (acceptable vs. unacceptable) if aligned with the application.
+
+Attribute information:
+
+1. buying (categorical, ordered): {vhigh, high, med, low}
+2. maint (categorical, ordered): {vhigh, high, med, low}
+3. doors (categorical, ordered): {2, 3, 4, 5more}
+4. persons (categorical, ordered): {2, 4, more}
+5. lug\_boot (categorical, ordered): {small, med, big}
+6. safety (categorical, ordered): {low, med, high}
+
+Target column information:
+class (multi-class): {unacc, acc, good, vgood}. The dataset enumerates all combinations of the six attribute values (1,728 total) and labels each with overall acceptability.

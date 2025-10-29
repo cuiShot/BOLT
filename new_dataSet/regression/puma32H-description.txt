@@ -1,0 +1,44 @@
+Dataset description:
+The puma32H dataset (OpenML data id 308) belongs to the Pumadyn family, synthetically generated from a realistic simulation of the Unimation PUMA 560 robot arm. Each record corresponds to a simulated robot state. The learning objective is to predict the angular acceleration of joint 6 from joint angles, angular velocities, applied torques, and additional dynamic parameters. The dataset contains 8,192 instances and 33 columns in total (32 continuous input features plus one continuous target). There are no missing values. In the original DELVE release, the cases are often referenced as 4,500 training and 3,692 test examples; OpenML typically provides the full combined table. The “H” in the name indicates a high-noise variant; with 32 inputs this variant is relatively linear but noisy.
+
+Task description:
+Formulate a supervised regression task to predict thetadd6 (joint‑6 angular acceleration) from the 32 real‑valued inputs. Because the target noise is heteroscedastic, prefer robust evaluation (e.g., MAE alongside RMSE) and report uncertainty or prediction intervals where feasible. Standardize features before distance‑based models. For benchmarking, consider time‑agnostic K‑fold splits as in DELVE or adopt repeated cross‑validation; ensure that any engineered lags or temporal ordering are explicitly documented if introduced.
+
+Attribute information:
+All predictors are continuous, per simulated state.
+
+1. theta1: Joint‑1 angle.
+2. theta2: Joint‑2 angle.
+3. theta3: Joint‑3 angle.
+4. theta4: Joint‑4 angle.
+5. theta5: Joint‑5 angle.
+6. theta6: Joint‑6 angle.
+7. thetad1: Joint‑1 angular velocity.
+8. thetad2: Joint‑2 angular velocity.
+9. thetad3: Joint‑3 angular velocity.
+10. thetad4: Joint‑4 angular velocity.
+11. thetad5: Joint‑5 angular velocity.
+12. thetad6: Joint‑6 angular velocity.
+13. tau1: Applied torque at joint 1.
+14. tau2: Applied torque at joint 2.
+15. tau3: Applied torque at joint 3.
+16. tau4: Applied torque at joint 4.
+17. tau5: Applied torque at joint 5.
+18. dm1: Dynamic parameter (synthetic/derived).
+19. dm2: Dynamic parameter (synthetic/derived).
+20. dm3: Dynamic parameter (synthetic/derived).
+21. dm4: Dynamic parameter (synthetic/derived).
+22. dm5: Dynamic parameter (synthetic/derived).
+23. da1: Dynamic parameter (synthetic/derived).
+24. da2: Dynamic parameter (synthetic/derived).
+25. da3: Dynamic parameter (synthetic/derived).
+26. da4: Dynamic parameter (synthetic/derived).
+27. da5: Dynamic parameter (synthetic/derived).
+28. db1: Dynamic parameter (synthetic/derived).
+29. db2: Dynamic parameter (synthetic/derived).
+30. db3: Dynamic parameter (synthetic/derived).
+31. db4: Dynamic parameter (synthetic/derived).
+32. db5: Dynamic parameter (synthetic/derived).
+
+Target column information:
+thetadd6 (real‑valued regression target): Angular acceleration of joint 6 (rad/s^2).

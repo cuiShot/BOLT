@@ -1,0 +1,45 @@
+Dataset description:
+The Myocardial Infarction Complications database was collected at the Krasnoyarsk Interdistrict Clinical Hospital No. 20 (Russia) during 1992–1995. It contains 1,700 patient records with 111 input features and 12 outcome variables related to in‑hospital complications of myocardial infarction. Input columns correspond to demographics, anamnesis, comorbidities, vital signs, ECG findings, laboratory tests, and treatments across the first three hospital days. Outputs capture specific complications and lethal outcome. The dataset includes missing values (about 7.6% of all entries) and is intended for predictive modeling at several time horizons: at admission, end of day 1 (24h), end of day 2 (48h), and end of day 3 (72h).
+
+Task description:
+Formulate supervised prediction tasks to identify which complications will occur during the hospital period. The canonical setup is multi‑label classification using the 11 binary complication columns and, optionally, the multiclass lethal outcome column. Alternative single‑target tasks include predicting a specific complication (binary) or predicting the cause of lethal outcome (multiclass). Because many complications are rare and some features are ordinal or partially ordered, consider strategies for class imbalance (stratification, class weights, resampling, threshold tuning), careful handling of missingness, and encodings that respect ordinality. Align the available features with the chosen prediction timepoint (earlier timepoints exclude some later‑measured variables).
+
+Attribute information:
+Examples of input attributes (all per‑patient; many are binary or ordinal):
+
+1. AGE (integer): Age of patient.
+2. SEX (binary): 0 = female, 1 = male.
+3. INF\_ANAM (ordinal): Number of prior myocardial infarctions in anamnesis (0, 1, 2, 3+).
+4. STENOK\_AN (ordinal): Exertional angina in anamnesis (never, last year, one year ago, two years ago, three years ago, 4–5 years ago, >5 years ago).
+5. FK\_STENOK (ordinal): Functional class of angina in the last year (0, I, II, III, IV).
+6. IBS\_POST (ordinal): CHD status shortly before admission (none, exertional angina, unstable angina).
+7. IBS\_NASL (binary): Family history burden of CHD.
+8. GB (ordinal): Essential hypertension stage (none, 1, 2, 3).
+9. SIM\_GIPERT (binary): Symptomatic hypertension.
+10. DLIT\_AG (ordinal): Duration of arterial hypertension (none, 1y, 2y, 3y, 4y, 5y, 6–10y, >10y).
+11. ZSN\_A (partially ordered): Chronic heart failure stage in anamnesis (0, I, IIa right‑ventricular, IIa left‑ventricular, IIB both).
+12. Arrhythmia history indicators (binary): nr01–nr08, nr11 (e.g., premature atrial/ventricular contractions, atrial fibrillation history, ventricular tachycardia/fibrillation history).
+13. Conduction disorder history (binary): np01, np04, np05, np07, np08, np09, np10 (e.g., AV blocks, LBBB/RBBB variants).
+14. Blood pressure measurements (real): S\_AD\_KBRIG, D\_AD\_KBRIG (pre‑hospital); S\_AD\_ORIT, D\_AD\_ORIT (ICU).
+15. Clinical states at admission or pre‑hospital (binary): O\_L\_POST (pulmonary edema), K\_SH\_POST (cardiogenic shock), MP\_TP\_POST (atrial fibrillation), SVT\_POST, GT\_POST, FIB\_G\_POST.
+16. Infarct localization on ECG (ordinal/binary): ant\_im, lat\_im, inf\_im, post\_im, IM\_PG\_P.
+17. ECG rhythm and conduction at admission (binary): ritm\_ecg\_p\_*, n\_r\_ecg\_p\_*, n\_p\_ecg\_p\_\* (e.g., sinus tachycardia/bradycardia, PACs/PVCs, AV block types, bundle branch blocks).
+18. Laboratory tests (real): K\_BLOOD, Na\_BLOOD, ALT\_BLOOD, AST\_BLOOD, KFK\_BLOOD, L\_BLOOD (WBC), ROE (ESR), and others.
+19. Treatments during the first three days (binary/counts): fibr\_ter\_\* (fibrinolytics), NOT\_NA\_\* (NSAIDs), LID\_\* (lidocaine), B\_BLOK\_S\_n (beta‑blockers), ANT\_CA\_S\_n (calcium channel blockers), GEPAR\_S\_n (heparin), ASP\_S\_n (aspirin), TIKL\_S\_n (ticlopidine), TRENT\_S\_n (Trental), NA\_R\_\* (opioids), NITR\_S (nitrates).
+
+Target column information:
+The dataset provides 12 outputs. Eleven are binary complication indicators (0 = no, 1 = yes):
+
+* FIBR\_PREDS: Atrial fibrillation.
+* PREDS\_TAH: Supraventricular tachycardia.
+* JELUD\_TAH: Ventricular tachycardia.
+* FIBR\_JELUD: Ventricular fibrillation.
+* A\_V\_BLOK: Third‑degree AV block.
+* OTEK\_LANC: Pulmonary edema.
+* RAZRIV: Myocardial rupture.
+* DRESSLER: Dressler syndrome.
+* ZSN: Chronic heart failure.
+* REC\_IM: Relapse (reinfarction).
+* P\_IM\_STEN: Post‑infarction angina.
+  The twelfth output is multiclass:
+* LET\_IS: Lethal outcome (cause). Values: 0 = unknown, 1 = cardiogenic shock, 2 = pulmonary edema, 3 = myocardial rupture, 4 = progress of congestive heart failure, 5 = thromboembolism, 6 = asystole, 7 = ventricular fibrillation.
