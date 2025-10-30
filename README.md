@@ -1,8 +1,5 @@
 # BOLT: A Pipeline-Level Controller for Fast-and-Accurate AutoML
 
-**Authors:** Shibo Cui, Junquan Gu, Xiangfeng Luo, Zhengyang Liu, Hang Yu  
-**Affiliation:** School of Computer Engineering and Science, Shanghai University  
-**Paper:** [BOLT: A Pipeline-Level Controller for Fast-and-Accurate AutoML]
 
 ---
 
@@ -34,9 +31,10 @@ BOLT integrates large language models (LLMs) into the AutoML workflow to:
 
 Across **30 public datasets** (classification and regression):
 - BOLT consistently outperforms strong AutoML baselines (e.g., AutoGluon, TPOT, H2O, DS-Agent).
-- Achieves **higher accuracy under equal or shorter runtime budgets**.
+- Achieves **higher AUC under equal or shorter runtime budgets**.
 - Ablation studies confirm the complementary benefits of D/J/R strategies.
 
 ---
+
 
 
