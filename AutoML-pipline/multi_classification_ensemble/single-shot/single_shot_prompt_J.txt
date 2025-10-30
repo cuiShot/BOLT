@@ -1,0 +1,74 @@
+## Model List:
+Model 1:
+- Validation Set Performance: Accuracy = 79.14, AUC = 82.14
+Model 2:
+- Validation Set Performance: Accuracy = 77.54, AUC = 82.32
+Model 3:
+- Validation Set Performance: Accuracy = 75.40, AUC = 80.84
+Model 4:
+- Validation Set Performance: Accuracy = 78.60, AUC = 81.28
+Model 5:
+- Validation Set Performance: Accuracy = 75.40, AUC = 79.12
+
+## Jaccard-Fault matrix
+We quantify how much two models “share the same mistakes” using the **Jaccard-Fault (JF)** measure.
+
+Let the error set of Model i be \(E_i=\{k \mid \text{Model } i \text{ misclassifies sample } k\}\).
+For two models i and j:
+\[
+\text{JF}[i,j] \;=\; \frac{|E_i \cap E_j|}{|E_i \cup E_j|}.
+\]
+- Range: \([0,1]\).
+- **Smaller JF ⇒ higher complementarity** (fewer overlapping errors).
+- **Larger JF ⇒ lower complementarity** (more similar errors).
+- **Diagonal**: \(\text{JF}[i,i]=1\) (self-similarity), so the main diagonal is always 1.
+
+The Jaccard-Fault Matrix (5×5, 4 decimals, hand-crafted to match the observed scale/pattern):
+[
+ [1.0000, 0.9286, 0.9107, 0.8947, 0.8500],
+ [0.9286, 1.0000, 0.8814, 0.8966, 0.8333],
+ [0.9107, 0.8814, 1.0000, 0.9138, 0.7742],
+ [0.8947, 0.8966, 0.9138, 1.0000, 0.8167],
+ [0.8500, 0.8333, 0.7742, 0.8167, 1.0000]
+]
+
+Key observations:
+- **Model 5** has **lower JF** to others (e.g., JF[5,3]=0.7742, JF[5,4]=0.8167, JF[5,2]=0.8333) → **highest complementarity**.
+- **Model 1 ↔ Model 2** (JF=0.9286) and **Model 3 ↔ Model 4** (JF=0.9138) are **highly similar** → **low complementarity**.
+- Most off-diagonal entries lie in the **0.83–0.93 high band → overall complementarity is low**; prioritize members with **low JF** to reduce correlation risk.
+- Symmetry: JF[i,j] = JF[j,i].
+- Diagonal convention: we set JF[i,i] = 1 (self-similarity) by convention, even if a model’s error set is empty in practice.
+
+Model Output:
+【Recommended Weight Vector (sum=1.0000)】  
+Model 1: Weight = 0.1600  
+Model 2: Weight = 0.1770  
+Model 3: Weight = 0.2000  
+Model 4: Weight = 0.1830  
+Model 5: Weight = 0.2800
+
+## Reasoning for Weight Assignment:
+We assign weights by prioritizing models that (i) are complementary to the rest (low JF to others) and (ii) avoid redundant pairs with high JF (low complementarity).
+
+-- Prefer the most complementary member  
+   Most JF values are high (≈0.83–0.93, **low complementarity**). Uniform averaging would double-count shared errors.  
+   Model 5 shows notably lower JF to others (e.g., 0.7742/0.8167/0.8333), so it receives the **largest weight** to maximize complementarity.
+
+-- Handle similar pairs conservatively  
+   - Model 1 ↔ Model 2 (JF=0.9286) and Model 3 ↔ Model 4 (JF=0.9138) are **highly similar / low-complementarity** pairs.  
+   - To limit redundancy, we assign **moderate** weights within each pair rather than heavy weights to both members.
+
+-- Diversity-first scoring, then optional performance scaling  
+   The displayed vector is derived from a diversity score \(d_i=\frac{1}{N-1}\sum_{j\neq i}(1-\text{JF}[i,j])\), then normalized to sum to 1.  
+   If validation metrics are available, introduce a performance prior \(p_i\) (e.g., normalized AUC/Accuracy) and use:
+   \[
+   w_i \;\propto\; d_i \times p_i \quad\text{(with a small penalty for near-duplicate pairs)}.
+   \]
+   Finally renormalize so \(\sum_i w_i=1\).
+
+-- Practical safeguards  
+   - Non-negativity and sum-to-1.  
+   - For a more conservative blend, cap any single model at ~0.30.  
+   - For near-duplicates (JF ≥ 0.95), keep one as a primary member and set the other to ≤0.05 or 0.
+
+Final Model Weight List:[0.1600,0.1770,0.2000,0.1830,0.2800]

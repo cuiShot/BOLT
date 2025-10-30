@@ -1,0 +1,76 @@
+
+You must output the following three parts:
+(1) Output the weight for each model. A model's weight may be 0, and the sum of all weights must be 1.00.
+(2) Briefly explain the reason for each model's weight.
+(3) On the last line, output a weight list alone, in the format: Final model weight list: [0.13, 0.22, 0.00, 0.33, 0.32]
+The last line will be parsed automatically by the program, so strictly follow this format.
+
+
+Model list:
+Model 1:
+- Validation set performance: Accuracy=89.32, AUC=82.05,
+Model 2:
+- Validation set performance: Accuracy=91.03, AUC=82.24,
+Model 3:
+- Validation set performance: Accuracy=90.29, AUC=83.43,
+Model 4:
+- Validation set performance: Accuracy=90.82, AUC=82.83,
+Model 5:
+- Validation set performance: Accuracy=90.82, AUC=83.92,
+
+The pairwise prediction differences on an independent validation set are shown in the matrix below. Each element [i][j] denotes the prediction disagreement rate between model i and model j on the validation set; a larger value indicates greater divergence in predictions and thus stronger complementarity.
+The model order in the matrix follows the list above (Model 1, Model 2, ...), and the matrix is 1-indexed to match the model numbering.
+The disagreement matrix is as follows (unit: proportion, rounded to two decimal places):
+[
+ [0.0000, 0.0288, 0.0383, 0.0256, 0.0288],
+ [0.0288, 0.0000, 0.0160, 0.0032, 0.0064],
+ [0.0383, 0.0160, 0.0000, 0.0128, 0.0096],
+ [0.0256, 0.0032, 0.0128, 0.0000, 0.0032],
+ [0.0288, 0.0064, 0.0096, 0.0032, 0.0000]
+]
+
+
+single-shot example:
+{
+Model List:
+Model 1:
+- Validation Set Performance: Accuracy = 79.14, AUC = 82.14
+Model 2:
+- Validation Set Performance: Accuracy = 77.54, AUC = 82.32
+Model 3:
+- Validation Set Performance: Accuracy = 75.40, AUC = 80.84
+Model 4:
+- Validation Set Performance: Accuracy = 78.60, AUC = 81.28
+Model 5:
+- Validation Set Performance: Accuracy = 75.40, AUC = 79.12
+
+Disagreement Rate matrix
+[
+ [0.0000, 0.0588, 0.1016, 0.0909, 0.1123],  
+ [0.0588, 0.0000, 0.0642, 0.0749, 0.1176],  
+ [0.1016, 0.0642, 0.0000, 0.0963, 0.1497],  
+ [0.0909, 0.0749, 0.0963, 0.0000, 0.1390],  
+ [0.1123, 0.1176, 0.1497, 0.1390, 0.0000]  
+]
+
+Model Output (Recommended Optimal Weight Vector):
+Model 1: Weight = 0.25  
+Model 2: Weight = 0.26  
+Model 3: Weight = 0.17  
+Model 4: Weight = 0.20  
+Model 5: Weight = 0.12  
+
+Reasoning for Weight Assignment:
+- Although Model 2 has a slightly lower Accuracy, it has the optimal AUC, so it is assigned the highest weight.  
+- Model 1 has a high AUC and little prediction disagreement with other models; it is used as a stable core model and given the second-highest weight.  
+- Model 4 has stable overall performance and is retained with a medium weight as a supplementary model.  
+- Although Model 3 has a lower AUC, it has a high disagreement rate (strong complementarity) with Model 2 and Model 4, so it is retained with a certain weight.  
+- Model 5 has the weakest performance but has a certain degree of complementarity (relatively high disagreement with all models), so it is assigned the lowest weight to participate in the ensemble.  
+
+Final Model Weight List:[0.25,0.26,0.17,0.20,0.12]
+}
+
+
+
+IMPORTANT: The last line of your output must exactly match the format of the last line in the single-shot example!
+IMPORTANT:If the model weight is 0, you must also output it, and you must ensure that the dimension of the obtained weight vector is consistent with the number of models!

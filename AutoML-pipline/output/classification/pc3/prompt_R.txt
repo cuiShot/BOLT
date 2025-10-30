@@ -1,0 +1,79 @@
+
+You must output the following three parts:
+(1) Output the weight for each model. A model's weight may be 0, and the sum of all weights must be 1.00.
+(2) Briefly explain the reason for each model's weight.
+(3) On the last line, output a weight list alone, in the format: Final model weight list: [0.13, 0.22, 0.00, 0.33, 0.32]
+The last line will be parsed automatically by the program, so strictly follow this format.
+
+
+Model list:
+Model 1:
+- Validation set performance: Accuracy=89.32, AUC=82.05,
+Model 2:
+- Validation set performance: Accuracy=91.03, AUC=82.24,
+Model 3:
+- Validation set performance: Accuracy=90.29, AUC=83.43,
+Model 4:
+- Validation set performance: Accuracy=90.82, AUC=82.83,
+Model 5:
+- Validation set performance: Accuracy=90.82, AUC=83.92,
+
+The Rescue-Confidence matrix is shown below. Each element [i][j] indicates the ability of model i to rescue model j when it makes a mistake; a larger value means model i is more effective at correcting model j's errors.
+The model order in the matrix follows the list above (Model 1, Model 2, ...), and the matrix is 1-indexed to match the model numbering.
+The Rescue-Confidence matrix is as follows (unit: proportion, rounded to two decimal places):
+[
+ [0.0000, 0.1281, 0.0804, 0.0726, 0.1037],
+ [0.1674, 0.0000, 0.0363, 0.0340, 0.0658],
+ [0.3290, 0.1241, 0.0000, 0.1425, 0.0903],
+ [0.1437, 0.0000, 0.0186, 0.0000, 0.0173],
+ [0.1062, 0.0000, 0.0000, 0.0000, 0.0000]
+]
+
+
+single-shot example:
+{
+Model list:
+model1:
+- Validation set performance: Accuracy=76.73, AUC=61.95
+model2:
+- Validation set performance: Accuracy=77.14, AUC=61.77
+model3:
+- Validation set performance: Accuracy=76.41, AUC=60.42
+model4:
+- Validation set performance: Accuracy=73.32, AUC=61.04
+model5:
+- Validation set performance: Accuracy=76.73, AUC=61.82
+
+Rescue–Confidence matrix:
+[
+ [0.0000, 0.0438, 0.0715, 0.1629, 0.0997],
+ [0.0405, 0.0000, 0.0657, 0.1663, 0.0939],
+ [0.0360, 0.0410, 0.0000, 0.1515, 0.0778],
+ [0.1388, 0.1512, 0.1214, 0.0000, 0.1427],
+ [0.0488, 0.0529, 0.0582, 0.1568, 0.0000]
+]
+
+Model Output (Recommended Optimal Weight Vector):
+Model 1: Weight = 0.2923
+Model 2: Weight = 0.2815
+Model 3: Weight = 0.1012
+Model 4: Weight = 0.0916
+Model 5: Weight = 0.2334
+
+
+Reasoning for Weight Assignment:
+- Model 1 shows strong standalone performance (Acc 76.73%, AUC 61.95) and complementary behavior; assign a core weight.
+- Model 2 shows strong standalone performance (Acc 77.14%, AUC 61.77) and complementary behavior; assign a core weight.
+- Model 3 is moderate by metrics (Acc 76.41%, AUC 60.42); keep a small-to-moderate weight for diversity.
+- Model 4 lags in metrics (Acc 73.32%, AUC 61.04); assign a minimal weight.
+- Model 5 has solid metrics (Acc 76.73%, AUC 61.82); assign a substantial weight.
+
+
+
+Final Model Weight List: [0.2923, 0.2815, 0.1012, 0.0916, 0.2334]
+}
+
+
+
+IMPORTANT: The last line of your output must exactly match the format of the last line in the single-shot example!
+IMPORTANT:If the model weight is 0, you must also output it, and you must ensure that the dimension of the obtained weight vector is consistent with the number of models!

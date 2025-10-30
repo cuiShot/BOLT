@@ -1,0 +1,87 @@
+## Model List:
+Model list:
+model1:
+- Validation set performance: Accuracy=76.73, AUC=61.95
+model2:
+- Validation set performance: Accuracy=77.14, AUC=61.77
+model3:
+- Validation set performance: Accuracy=76.41, AUC=60.42
+model4:
+- Validation set performance: Accuracy=73.32, AUC=61.04
+model5:
+- Validation set performance: Accuracy=76.73, AUC=61.82
+
+## Rescue–Confidence matrix
+The Rescue–Confidence matrix R captures **directional rescue ability** between models. Each entry R[i,j] answers: “When Model j fails on a validation example, how reliably does Model i get that same example right—and do so with confidence, especially when j is confidently wrong?”
+What R[i,j] measures (intuitively)
+- Directional & asymmetric: it evaluates the rescue from i → j only (not j → i).
+- Conditioned on j’s errors: we only look at examples where Model j makes a mistake.
+- Rescue events: a rescue happens when Model j is wrong while Model i is correct on the same example.
+- Confidence-aware weighting:
+  - Model i’s contribution is stronger when it is **confident** about the true label.
+  - Model j’s mistake is weighted more when it is **confidently wrong** (e.g., a large margin between its chosen wrong class and the true class). A smooth “emphasis” factor (like a sigmoid with a tunable strength beta) increases the weight of these high-risk mistakes.
+- Column-wise normalization: each column j is normalized using a constant that depends only on j’s (weighted) error set, so values within column j are comparable across rescuers i. Columns are comparable but do not necessarily sum to 1.
+
+Key properties
+- **Directional / asymmetric:** generally R[i,j] ≠ R[j,i].
+- **Diagonal is zero:** R[i,i] = 0 (a model does not rescue itself).
+- **Larger R[i,j] ⇒ stronger i→j rescue:** Model i tends to be confidently correct exactly where Model j tends to be confidently wrong.
+- **Smaller R[i,j] ⇒ weaker rescue / higher behavioral similarity on j’s failure cases.**
+
+How to use R in an ensemble
+- Compute a row-wise “rescue breadth” score for each model i (e.g., average R[i,j] over all j ≠ i).
+- Combine this directional rescue score with each model’s standalone metrics (Accuracy/AUC) to assign ensemble weights: prioritize models that both perform well individually and **rescue others** where they fail.
+- Practical tips: use calibrated probabilities (e.g., temperature scaling), choose the beta parameter to control how much “confidently wrong” cases are emphasized, and include a small epsilon in normalization for numerical stability.
+
+Indexing
+- Indices follow the Model List order (Model 1, Model 2, …).
+The Rescue–Confidence matrix is as follows (Unit: Proportion, retained to four decimal places):
+[
+ [0.0000, 0.0438, 0.0715, 0.1629, 0.0997],
+ [0.0405, 0.0000, 0.0657, 0.1663, 0.0939],
+ [0.0360, 0.0410, 0.0000, 0.1515, 0.0778],
+ [0.1388, 0.1512, 0.1214, 0.0000, 0.1427],
+ [0.0488, 0.0529, 0.0582, 0.1568, 0.0000]
+]
+For example, R[1,3] = 0.0715 means that, among Model 3’s (weighted) error set, Model 1 tends to be correct and confident on about 7.15% of those cases after column-3 normalization (i → j rescue strength).
+
+Model Output:
+【Recommended Optimal Weight Vector】  
+Model 1: Weight = 0.2923
+Model 2: Weight = 0.2815
+Model 3: Weight = 0.1012
+Model 4: Weight = 0.0916
+Model 5: Weight = 0.2334
+ 
+
+## Reasoning for Weight Assignment
+
+We combine (i) **directional rescue** from the Rescue–Confidence matrix and (ii) **standalone performance** (Accuracy & AUC).
+
+-- Directional rescue from R (row-wise score)
+   For each model i, compute a row-wise rescue score \(d_i = \frac{1}{N-1}\sum_{j \neq i} R_{i j}\).
+   Using the given matrix:
+   - d₁ ≈ 0.0945, d₂ ≈ 0.0916, d₃ ≈ 0.0766, d₄ ≈ 0.1385, d₅ ≈ 0.0792.
+   Observation: Model 4 has the **highest directional rescue** (strong i→j coverage for many j), followed by Models 1 and 2.
+
+-- Performance prior from fixed metrics (kept exactly as provided)
+   We min–max normalize Accuracy and AUC across models and average them to obtain a performance prior \(p_i\).
+   Highlights:
+   - Model 1 and Model 2 show the strongest overall metrics (best AUC and best Accuracy, respectively).
+   - Model 5 is solid on both metrics.
+   - Model 3 has the weakest AUC; Model 4 has the weakest Accuracy.
+
+-- Weight construction (diversity × performance)
+   We set \(w_i \propto d_i \times p_i\) and renormalize so \(\sum_i w_i = 1\).
+   This yields:
+   - **Model 1 (0.2923)** & **Model 2 (0.2815)** — strong metrics with adequate rescue breadth (e.g., both rescue Model 4 considerably), hence the largest weights.
+   - **Model 5 (0.2334)** — balanced metrics and decent rescue, earns the third-largest weight.
+   - **Model 3 (0.1012)** — lower AUC and modest rescue; kept for occasional orthogonal gains but with a small weight.
+   - **Model 4 (0.0916)** — highest rescue signal yet weaker metrics; included as a correlation breaker without overweighting a lower-accuracy model.
+
+-- Redundancy control & pitfalls avoided
+   - **Consistent semantics:** higher \(R_{i j}\) ⇒ stronger *i → j* rescue (directional and asymmetric).
+   - Avoid giving heavy weights to pairs that mutually have small \(R\) to most others (similar behavior) unless justified by very strong metrics.
+   - Keep weights non-negative and summing to 1; cap any single model if a more conservative ensemble is desired; validate on a hold-out split.
+  
+Final Model Weight List: [0.2923, 0.2815, 0.1012, 0.0916, 0.2334]
