@@ -1,5 +1,13 @@
 # BOLT: A Pipeline-Level Controller for Fast-and-Accurate AutoML
+---
 
+## 🚀 Quick Start
+### Create Conda Environment and Install Dependencies
+```bush
+conda create -n bolt python=3.11.12
+conda activate bolt
+pip install -r requirements.txt
+```
 
 ---
 
@@ -35,6 +43,7 @@ Across **30 public datasets** (classification and regression):
 - Ablation studies confirm the complementary benefits of D/J/R strategies.
 
 ---
+
 
 
 
